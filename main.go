@@ -1,14 +1,12 @@
 package main
 
 import (
+	"github.com/swimify/backend-api/route"
 	"log"
 	"net/http"
-	"github.com/swimify/backend-api/route"
 
 	"github.com/gorilla/mux"
 )
-
-
 
 func main() {
 	log.Println("starting API server")
@@ -24,6 +22,3 @@ func main() {
 	http.ListenAndServe(":8080", router)
 
 }
-
-
-
