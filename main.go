@@ -1,24 +1,22 @@
 package main
 
 import (
-	"github.com/swimify/backend-api/route"
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/swimlibre/backend-api/container"
+	"github.com/swimlibre/backend-api/fixtures"
 )
 
 func main() {
-	log.Println("starting API server")
-	//create a new router
-	router := mux.NewRouter()
-	log.Println("creating routes")
-	//specify endpoints
-	router.HandleFunc("/health-check", route.HealthCheck).Methods("GET")
-	router.HandleFunc("/persons", route.Persons).Methods("GET")
-	http.Handle("/", router)
+	// Instantiate the DI Container
+	container := container.BuildContainer()
+
+	// @todo move this to a CLI command
+	// Load Fixtures
+	fixtures.LoadFixtures(container.DB)
 
 	//start and listen to requests
-	http.ListenAndServe(":8080", router)
-
+	log.Println("listening on 8080")
+	http.ListenAndServe(":8080", container.Router)
 }

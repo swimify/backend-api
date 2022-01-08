@@ -1,34 +1,28 @@
-package route
-
+package routes
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
-	"github.com/swimify/backend-api/model"
-)
 
-func HealthCheck(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "API is up and running  woot")
-}
+	"github.com/swimlibre/backend-api/model"
+)
 
 func Persons(w http.ResponseWriter, r *http.Request) {
 	var response model.Response
 	var persons []model.Person
 
 	var person model.Person
-	person.Id = 1
+	person.ID = 1
 	person.FirstName = "Michael"
 	person.LastName = "Phelps"
 	persons = append(persons, person)
 
-	person.Id = 2
+	person.ID = 2
 	person.FirstName = "Dana"
 	person.LastName = "Torres"
 	persons = append(persons, person)
 
-	person.Id = 3
+	person.ID = 3
 	person.FirstName = "Mark"
 	person.LastName = "Spitz"
 	persons = append(persons, person)
